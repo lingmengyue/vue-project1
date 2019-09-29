@@ -35,7 +35,7 @@
 
 <style scoped lang="scss">
   a{text-decoration: none !important;}
- .app-container{padding-top: 40px;}
+ .app-container{padding-top: 40px;padding-bottom: 50px;}
   .v-enter{opacity: 0;transform:translateX(100%);}
   .v-leave-to{opacity: 0;transform:translateX(100%);position: absolute;}
   .v-enter-active,.v-leave-active{transition: all 0.5s ease;}
