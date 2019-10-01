@@ -2,13 +2,13 @@
         <div class="cmt-container">
                 <h3>发表评论</h3>
                 <hr>
-                <textarea placeholder="发表你的评论"></textarea>
-                <mt-button type="primary" size="large">submit</mt-button>
+                <textarea placeholder="发表你的评论" v-model="msg"></textarea>
+                <mt-button type="primary" size="large" @click="submitComment">submit</mt-button>
                 <br>
                   <div class="cmt-list">
                           <div class="cmt-item" v-for="(item,i) in commentList" :key="item.id">
                                   <div class="cmt-title">
-                                          第{{i+1}}楼&nbsp;&nbsp;用户：{{item.username}}&nbsp;&nbsp;发表时间：{{item.create_time}}
+                                          第{{i+1}}楼&nbsp;&nbsp;用户：{{item.username}}&nbsp;&nbsp;发表时间：{{item.create_time | dateFormat}}
                                   </div>
                                   <div class="cmt-body">
                                           {{item.comment}}
@@ -30,7 +30,8 @@
                                 lastPage:"",
                                 total:"",
                                 limit:8,
-                                pageIndex: 1
+                                pageIndex: 1,
+                                msg: ''
                         }
                 },
                 created(){
@@ -57,6 +58,30 @@
                                else{
                                        Toast('已经没有更多数据了');
                                }
+                        },
+                        submitComment(){
+                                if(this.msg.trim().length === 0 ){
+                                        return Toast('评论不能为空');
+                                }
+                              this.$http.post('api/vue/saveComment',{
+                                   msg: this.msg.trim(),
+                                   userid: 21,
+                                   username: "test21",
+                                   type_id: 1,
+                                   show_id: this.$route.params.id
+                              }).then(function (result){
+                                      if(result.body.status == 1){
+                                              var cmt = {
+                                                      username: '匿名用户',
+                                                      create_time: Date.now(),
+                                                      comment: this.msg.trim()
+                                              };
+                                              this.commentList.unshift(cmt);
+                                      }
+                                      else {
+                                              Toast('发表评论失败');
+                                      }
+                              })
                         }
                 },
                 props: ["id"]

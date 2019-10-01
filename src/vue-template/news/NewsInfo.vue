@@ -44,8 +44,6 @@
                         }
                 },
                 components: {'Comment': comment}
-
-
         }
 </script>
 
