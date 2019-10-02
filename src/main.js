@@ -20,6 +20,11 @@ import MintUI from  'mint-ui';
 Vue.use(MintUI);
 import 'mint-ui/lib/style.css';
 
+//安装图片预览插件
+import VuePreview from 'vue-preview';
+Vue.use(VuePreview);
+
+
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -33,5 +38,5 @@ var vm = new Vue({
 
 //全局时间格式化过滤器
 Vue.filter('dateFormat',function (dateStr,pattern='YYYY-MM-DD HH:mm:ss') {
-    return moment.unix(dateStr).format(pattern);//不加unix选项默认自动转换13位时间戳，加了后才可转换10位时间戳
+    return moment(dateStr).format(pattern);//不加unix选项默认自动转换13位时间戳，加了后才可转换10位时间戳
 });

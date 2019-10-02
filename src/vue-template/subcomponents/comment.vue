@@ -39,6 +39,7 @@
                 },
                 methods: {
                         getComment(){
+                                console.log(Date.now());
                                 this.$http.get('api/vue/comment/' + this.limit + '/' + this.pageIndex).then(result => {
                                         if(result.status == 200){
                                                 this.commentList = this.commentList.concat(result.body.data);
@@ -63,12 +64,12 @@
                                 if(this.msg.trim().length === 0 ){
                                         return Toast('评论不能为空');
                                 }
-                              this.$http.post('api/vue/saveComment',{
+                              this.$http.post('api/vue/saveComment?XDEBUG_SESSION_START=13755',{
                                    msg: this.msg.trim(),
                                    userid: 21,
                                    username: "test21",
                                    type_id: 1,
-                                   show_id: this.$route.params.id
+                                   show_id: this.$route.params.id,
                               }).then(function (result){
                                       if(result.body.status == 1){
                                               var cmt = {
@@ -84,7 +85,7 @@
                               })
                         }
                 },
-                props: ["id"]
+                props: ["show_id"]
         }
 </script>
 

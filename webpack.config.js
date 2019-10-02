@@ -19,8 +19,8 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new htmlWebpackPlugin({
-            template: path.join(__dirname, './src/index.html?limit=10240'),
-            filename: 'index.html'
+            template: path.join(__dirname, './src/index.html'), // 指定模板文件路径
+            filename: 'index.html' // 设置生成的内存页面的名称
         }),
         new VueLoaderPlugin()
     ],

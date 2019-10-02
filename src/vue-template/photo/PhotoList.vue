@@ -13,22 +13,19 @@
 
                 <div class="imgContent">
                         <ul>
-                                <li v-for="item in imageContent" :key="item.id">
-                                        <img v-lazy="item.img_url">
-                                        <div class="info">
-                                                <h3 class="info-title">
-                                                        {{item.title}}
-                                                </h3>
-                                                <div class="info-content">
-                                                        测试内容观看<br>
-                                                        测试内容观看<br>
-                                                        测试内容观看<br>
-                                                        测试内容观看<br>
-                                                        测试内容观看<br>
-                                                        测试内容观看<br>
+                            <router-link v-for="item in imageContent" :key="item.id" tag="li" :to="'/home/photoInfo/'+item.id">
+                                <img v-lazy="item.img_url">
+                                <div class="info">
+                                    <h3 class="info-title">
+                                        {{item.title}}
+                                    </h3>
+                                    <div class="info-content">
+                                        测试内容观看<br>
+                                    </div>
+                                </div>
+                            </router-link>
+                                <li >
 
-                                                </div>
-                                        </div>
                                 </li>
                         </ul>
                 </div>
@@ -77,7 +74,7 @@
 </script>
 
 <style scoped lang="scss">
-*{ touch-action: pan-x;}
+/**{ touch-action: pan-x;}*/
 .mint-header-title{
         z-index: 99;
 }

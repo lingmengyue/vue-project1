@@ -11,7 +11,7 @@
                      <br><br><br><br><br><br><br><br><br><br><br><br>
              </div>
              <div class="comment">
-                 <Comment :id="this.id"></Comment>
+                 <Comment :show_id="this.id"></Comment>
              </div>
         </div>
 
