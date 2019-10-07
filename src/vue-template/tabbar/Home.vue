@@ -1,11 +1,6 @@
 <template>
         <div class="homeContainer">
-
-                <mt-swipe :auto="2000">
-                        <mt-swipe-item v-for="item in bannerList" :key="item.key_word">
-                              <img :src="item.img.url">
-                        </mt-swipe-item>
-                </mt-swipe>
+                <banner :bannerList = "bannerList" ></banner>
 
                 <ul class="mui-table-view mui-grid-view mui-grid-9">
                         <li class="mui-table-view-cell mui-media mui-col-xs-6 mui-col-sm-4"><router-link to="/home/newsList">
@@ -42,6 +37,7 @@
 
 <script type="text/javascript">
    import {Toast} from 'mint-ui';
+   import swiper from '../../vue-template/subcomponents/swiper.vue';
    export default {
            data(){
                    return {
@@ -61,10 +57,12 @@
                                    else {
                                            Toast('loading fail');
                                    }
+                           }).catch(err => {
+                                   console.log(err);
                            })
                    }
-           }
-
+           },
+           components: {'banner': swiper}
    }
 </script>
 
@@ -82,20 +80,5 @@
 
          a{text-decoration: none !important;}
  }
-.homeContainer .mint-swipe{
-        height: 250px !important;
-        .mint-swipe-item {
-                &:nth-child(1){
-                        background: red;
-                }
-                &:nth-child(2){
-                        background: green;
-                }
-                &:nth-child(3){
-                        background: blue;
-                }
-                img{width:100%;}
-        }
-}
 
 </style>

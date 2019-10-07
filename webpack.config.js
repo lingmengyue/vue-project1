@@ -13,7 +13,7 @@ module.exports = {
     devServer:{
         open: false,
         port: 3000,
-        contentBase: 'src',
+        contentBase: path.join(__dirname,'src'),
         hot: true
     },
     plugins: [

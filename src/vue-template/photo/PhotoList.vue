@@ -2,11 +2,11 @@
         <div class="photoContainer">
                 <div id="slider" class="mui-slider">
                         <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-                                <div class="mui-scroll">
-                                        <a :class="['mui-control-item', item.id == 0 ? 'mui-active' : '']" to="" data-wid="tab-top-subpage-1.html" v-for="item in categoryList" :key="item.id" @click="getImageContent(item.id)">
+                                <ul class="mui-scroll">
+                                        <li :class="['mui-control-item', item.id == 0 ? 'mui-active' : '']"  v-for="item in categoryList" :key="item.id" @tap="getImageContent(item.id)">
                                                 {{item.name}}
-                                        </a>
-                                </div>
+                                        </li>
+                                </ul>
                         </div>
 
                 </div>
@@ -14,10 +14,10 @@
                 <div class="imgContent">
                         <ul>
                             <router-link v-for="item in imageContent" :key="item.id" tag="li" :to="'/home/photoInfo/'+item.id">
-                                <img v-lazy="item.img_url">
+                                <img v-lazy="item.imgUrl">
                                 <div class="info">
                                     <h3 class="info-title">
-                                        {{item.title}}
+                                        {{item.title}}---{{item.imgUrl}}
                                     </h3>
                                     <div class="info-content">
                                         测试内容观看<br>
@@ -79,7 +79,7 @@
         z-index: 99;
 }
 .photoContainer{
-        a{text-decoration: none;}
+        /*a{text-decoration: none;}*/
         .imgContent{
                 margin: 0;
                 padding: 5px 5px 0px 5px;

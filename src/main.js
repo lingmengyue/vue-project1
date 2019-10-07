@@ -9,6 +9,7 @@ import 'mint-ui/lib/style.css';
 import './lib/mui/css/mui.min.css';
 import './lib/mui/css/icons-extra.css';
 
+
 //按需导入的mint-ui组件
 /*import { Header, Swipe, SwipeItem, Button, Lazyload} from 'mint-ui';
 Vue.component(Swipe.name, Swipe);
@@ -24,6 +25,7 @@ import 'mint-ui/lib/style.css';
 import VuePreview from 'vue-preview';
 Vue.use(VuePreview);
 
+//区域滚动插件
 
 
 Vue.use(VueRouter);

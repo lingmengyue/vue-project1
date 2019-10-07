@@ -1,6 +1,6 @@
 <template>
-        <div class="product-container">
-                <ul>
+        <div class="product-container" ref="bscroll">
+                <ul class="menuWrapper-container">
                         <li class="product-item" v-for="item in productList" :key="item.id" @click="goProductDetail(item.id)">
                                 <img :src='item.main_img_url'>
                                 <h3> {{item.name}}</h3>
@@ -21,11 +21,15 @@
 </template>
 
 <script type="text/javascript">
+import BScroll from 'better-scroll';
 export default{
         data(){
                 return{
                         productList:[]
                 }
+        },
+        mounted(){
+             this.scroll();
         },
         created(){
                 this.getProductList();
@@ -35,11 +39,19 @@ export default{
                         this.$http.get('api/v1/product/recent').then(result => {
                                 if(result.status == 200){
                                      this.productList = result.body;
+                                        this.$nextTick(() => {
+                                                this.scroll();
+                                        })
                                 }
+
                         })
                 },
                 goProductDetail(id){
                         this.$router.push({name: 'productDetail', params: {id}});
+                },
+                scroll(){
+                        let bscrollDom = this.$refs.bscroll;
+                        this.aBScroll = new BScroll(bscrollDom,{})
                 }
         }
 }
@@ -48,16 +60,17 @@ export default{
 <style lang="scss" scoped>
 .product-container{
         padding: 10px;
-        ul{
+        overflow: hidden;
+        position: absolute;
+        .menuWrapper-container{
                 margin: 0;
                 padding: 0;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
         }
-        li{
+        .product-item{
                 width: 49%;
-                height: auto;
                 list-style: none;
                 border: 1px solid #ccc;
                 box-shadow: 0 0 8px #ccc;

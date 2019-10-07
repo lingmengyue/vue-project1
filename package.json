@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "babel-plugin-transform-remove-strict-mode": "0.0.2",
+    "better-scroll": "^1.15.2",
     "jquery": "^3.4.1",
     "mint-ui": "^2.2.13",
     "moment": "^2.24.0",

@@ -41,8 +41,8 @@
                                            this.contentData.images.forEach(item =>{
                                                    item.w = 600;   //设置以大图浏览时的宽度
                                                    item.h = 400;     //设置以大图浏览时的高度
-                                                   item.src = item.img_url;  //大图
-                                                   item.msrc = item.img_url;  //小图
+                                                   item.src = item.imgUrl;  //大图
+                                                   item.msrc = item.imgUrl;  //小图
                                            });
                                            this.thumbList = this.contentData.images;
 

@@ -9,6 +9,8 @@ import PhotoList from '../vue-template/photo/PhotoList.vue';
 import PhotoInfo from '../vue-template/photo/PhotoInfo.vue';
 import Product from '../vue-template/product/Product.vue';
 import ProductDetail from '../vue-template/product/ProductDetail.vue';
+import ProductInfo from '../vue-template/product/ProductInfo.vue';
+import ProductComment from '../vue-template/product/ProductComment.vue';
 var routers = new VueRouter({
     routes: [
         {path:'/',redirect: '/home'},
@@ -22,6 +24,8 @@ var routers = new VueRouter({
         {path: '/home/photoInfo/:id', component:PhotoInfo},
         {path: '/home/product', component:Product},
         {path: '/home/productDetail/:id', component:ProductDetail, name: 'productDetail'},
+        {path: '/home/productInfo/:id', component:ProductInfo, name: 'productInfo'},
+        {path: '/home/productComment/:id', component:ProductComment, name: 'productComment'},
     ],
     linkActiveClass: 'mui-active'
 });
