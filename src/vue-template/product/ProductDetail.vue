@@ -12,14 +12,13 @@
                 <div class="mui-card">
                         <banner :bannerList = "productList" ></banner>
                 </div>
-
                 <!--商品购买领域-->
                 <div class="mui-card shop-area">
                         <div class="mui-card-header">{{productParams.name}}</div>
                         <div class="mui-card-content">
                                 <div class="mui-card-content-inner">
                                         <p class="price"><del>市场价：￥2299</del>&nbsp;&nbsp;销售价：<span class="now_price">￥{{productParams.price}}</span></p>
-                                        <p><span>购买数量：</span><numberBox class="number-box"></numberBox></p>
+                                        <p><span>购买数量：</span><numberBox class="number-box" :max="productParams.stock" @getCount="getSelectCount"></numberBox></p>
                                         <p>
                                                 <mt-button type="primary" size="small">立即购买</mt-button>
                                                 <mt-button type="danger" size="small" @click="addToCar">加入购物车</mt-button>
@@ -55,7 +54,9 @@ export default{
                         id: this.$route.params.id,
                         productList:[],
                         productParams: [],
-                        ballFlag: false
+                        ballFlag: false,
+                        selectCount: 1,
+                        value: false
                 }
         },
         created(){
@@ -66,7 +67,6 @@ export default{
                 getProductBanner(){
                         this.$http.get('api/v1/banner/1').then(result => {
                                 if(result.status == 200){
-                                        console.log(result.body.items);
                                         this.productList = result.body.items;
                                         Toast('loading success');
                                 }
@@ -79,8 +79,9 @@ export default{
                 },
                 getProductParams(){
                         this.$http.get('api/v1/product/11').then(result => {
+                                console.log(result.body[0]);
                                 if(result.status == 200){
-                                        this.productParams = result.body;
+                                        this.productParams = result.body[0];
                                         Toast('loading success');
                                 }
                                 else {
@@ -98,6 +99,8 @@ export default{
                 },
                 addToCar(){
                      this.ballFlag = !this.ballFlag;
+                     var productInfo = {id:this.id,count:this.selectCount,price:this.productParams.price,selected:true};
+                     this.$store.commit('addCars',productInfo);
                 },
                 beforeEnter(el){
                         el.style.transform = "translate(0,0)";
@@ -111,14 +114,15 @@ export default{
                         //获取偏移位置具体像素
                         const xDist = badgePosition.left - ballPosition.left;
                         const yDist = badgePosition.top - ballPosition.top;
-                        console.log(xDist+":"+yDist);
-                        console.log(badgePosition);
                         el.style.transform = `translate(${xDist}px, ${yDist}px)`;
                         el.style.transition = "all 1s cubic-bezier(.4,-0.3,1,.68)";
                         done();
                 },
                 afterEnter(el){
                         this.ballFlag = !this.ballFlag;
+                },
+                getSelectCount(count){
+                     this.selectCount = count;
                 }
 
         },

@@ -17,7 +17,6 @@
                         </li>
                 </ul>
         </div>
-
 </template>
 
 <script type="text/javascript">

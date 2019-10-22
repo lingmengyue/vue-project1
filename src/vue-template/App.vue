@@ -17,7 +17,7 @@
                                 <span class="mui-tab-label">会员</span>
                         </router-link>
                         <router-link class="mui-tab-item" to="/cart">
-                                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">9</span></span>
+                                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{ $store.getters.getAllCounts }}</span></span>
                                 <span class="mui-tab-label">购物车</span>
                         </router-link>
                         <router-link class="mui-tab-item" to="/search">
@@ -33,8 +33,6 @@
 <script type="text/javascript">
         import mui from '../lib/mui/js/mui.min.js';
         mui('body').on('tap','a',function(){document.location.href=this.href;});
-/*        mui.init();
-        window.baseAppAdrr;*/
 </script>
 
 <style lang="scss" scoped>
@@ -44,5 +42,5 @@
   .v-enter{opacity: 0;transform:translateX(100%);}
   .v-leave-to{opacity: 0;transform:translateX(100%);position: absolute;}
   .v-enter-active,.v-leave-active{transition: all 0.5s ease;}
-  .mui-badge{width: 15px;height: 15px;}
+  .mui-badge{width: 16px;height: 16px;padding: 1px!important;}
 </style>
